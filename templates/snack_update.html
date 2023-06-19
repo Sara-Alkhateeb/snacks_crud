@@ -1,0 +1,48 @@
+{% extends 'sharing.html' %} 
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-4xl font-extrabold mb-4 text-gray-400 inline-block">Update the {{snack.name}}</h1>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="my-submit">Submit</button>
+        </form>
+    </div>
+    <style>
+        form input[type="text"],
+        form textarea {
+            color: rgb(255, 255, 255);
+            background-color: #4d89cd96;
+            border: none;
+            border-radius: 4px;
+            padding: 8px;
+            margin-bottom: 8px;
+        }
+
+
+        textarea#id_description {
+            width: 20%;
+            height: 50px;
+        }
+
+      .my-submit {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #4d89cd96;
+        color: #fff;
+        text-decoration: none;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+  
+      .my-submit:hover {
+        background-color: #347ad1;
+      }
+  
+    </style>
+{% endblock content %}

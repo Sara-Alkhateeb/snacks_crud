@@ -4,9 +4,39 @@
   <div class="text-center">
     <h1 class="text-4xl font-extrabold mb-4 text-gray-400 inline-block">Snacks list</h1>
     {% for snack in object_list %}
-    <h3><a href="{% url 'snack_details' snack.pk%}">{{snack.name}}</a></h3>
-    {% endfor%}
-
+    <h3><a href="{% url 'snack_details' snack.pk%}">{{ snack.name }}</a></h3>
+    <button class="Bupdate"><a href="{% url 'snack_update' snack.pk%}">Update</a></button>
+    <button class="Bdelete"><a href="{% url 'snack_delete' snack.pk%}">Delete</a></button>
+    {% endfor %}
   </div>
-     
+  
+  <div class="text-center">
+    <button class="my-button"><a href="{% url 'snack_create' %}">Add new one</a></button>
+  </div>
+
+  <style>
+    .Bupdate,
+    .Bdelete,
+    .my-button {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: #4d89cd96;
+      color: #fff;
+      text-decoration: none;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 16px;
+    }
+    
+    .Bupdate,
+    .Bdelete,
+    .my-button:hover {
+      background-color: #347ad1;
+    }
+  </style>
 {% endblock %}
+
+

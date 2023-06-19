@@ -1,4 +1,4 @@
-# Project: snack_tracker_project
+# Project: snack_CRUD_project
 ---
 ## Author: Sara Alkhateeb
 ---
