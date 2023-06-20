@@ -54,6 +54,49 @@ class SnackPageTests(TestCase):
     def test_str_method(self):
         self.assertEqual(str(self.snack), "Test Snack")
 
+    def test_create_view(self):
+            obj = {
+                'name': "Test Snack 2",
+                'description': 'Test snack description 2',
+                'purchaser': self.user.id,
+            }
+
+            url = reverse('snack_create')
+            response = self.client.post(path=url, data=obj, follow=True)
+            self.assertRedirects(response, reverse('snacksList'))
+
+    def test_delete_view(self):
+            obj = {
+                'name': "Test Snack 2",
+                'description': 'Test snack description 2',
+                'purchaser': self.user.id,
+            }
+
+            url = reverse('snack_delete', args=[self.user.id])
+            response = self.client.post(path=url, data=obj, follow=True)
+            self.assertRedirects(response, reverse('snacksList'))
+
+    def test_update_view(self):
+        updated_obj = {
+            'name': "Updated Snack",
+            'description': 'Updated snack description',
+            'purchaser': self.user.id,
+        }
+
+        url = reverse('snack_update', args=[self.snack.pk])
+        response = self.client.post(path=url, data=updated_obj, follow=True)
+        self.assertRedirects(response, reverse('snacksList'))
+        self.snack.refresh_from_db()  # Refresh the object from the database
+        self.assertEqual(self.snack.name, updated_obj['name'])
+        self.assertEqual(self.snack.description, updated_obj['description'])
+        self.assertEqual(self.snack.purchaser, self.user)
+
+
+
+    
+    
+
+
 
 
 
